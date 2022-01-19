@@ -1,0 +1,20 @@
+{
+    "name": "publitio/php-gallery",
+    "description": "An example of using Publitio in a simple gallery written in php",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Publitio\\PhpGallery\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dragan",
+            "email": "dilic993@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "publitio/publitio": "dev-master"
+    }
+}
