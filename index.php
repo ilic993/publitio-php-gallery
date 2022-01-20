@@ -34,6 +34,8 @@
             <?php if(isset($_SESSION["error"])): ?>
                 <div class="message error"><?php echo $_SESSION["error"]; ?></div>
             <?php endif; ?>
+
+            <?php include 'src/gallery.php'; ?>
             
         </div>
 
