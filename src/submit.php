@@ -3,6 +3,7 @@
 namespace PhpGallery;
 
 require '../vendor/autoload.php';
+require_once('class.variables.php');
 
 session_start();
 
@@ -27,11 +28,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception('File open failed.');
         }
 
-        $publitio = new \Publitio\API('xxx','yyy');
+        $publitio = new \Publitio\API(Variables::$API_KEY, Variables::$API_SECRET);
         $publitio->uploadFile($fp, 'file', array(
             'public_id' => $title !== '' ? $title : '',
             'title' => $title !== '' ? $title : '',
-            'folder' => 'zzz'
+            'folder' => Variables::$FOLDER
         ));
 
         $_SESSION['success'] = "File uploaded successfully";
