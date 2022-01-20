@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+// Session used for displaying errors/success messages
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

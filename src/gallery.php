@@ -5,10 +5,14 @@ namespace PhpGallery;
 require 'vendor/autoload.php';
 require_once('src/class.variables.php');
 
+// Get page parameter from URL
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * Variables::$PER_PAGE;
 
+// Create Publitio instance with key and secret
 $publitio = new \Publitio\API(Variables::$API_KEY, Variables::$API_SECRET);
+
+// Get files from specified folder, order, limit and type
 $images = $publitio->call('/files/list', 'GET', [
     'offset' => $offset, 
     'limit' => Variables::$PER_PAGE, 
@@ -17,6 +21,7 @@ $images = $publitio->call('/files/list', 'GET', [
     'filter_type' => 'image'
 ]);
 
+// Calculate total number of pages
 $pages = ceil($images->files_total / Variables::$PER_PAGE) ?? 1;
 ?>
 
