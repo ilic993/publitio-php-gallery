@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,6 +26,14 @@
                     <input class="btn" type="submit" value="Upload">
                 </div>
             </form>
+
+            <?php if(isset($_SESSION["success"])): ?>
+                <div class="message success"><?php echo $_SESSION["success"]; ?></div>
+            <?php endif; ?>
+            
+            <?php if(isset($_SESSION["error"])): ?>
+                <div class="message error"><?php echo $_SESSION["error"]; ?></div>
+            <?php endif; ?>
             
         </div>
 
@@ -33,3 +42,5 @@
         </div>
     </body>
 </html>
+
+<?php session_unset(); ?>
