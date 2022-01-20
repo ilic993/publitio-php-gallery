@@ -2,6 +2,8 @@
 
 namespace PhpGallery;
 
+require '../vendor/autoload.php';
+
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,8 +21,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: /");
     }
 
-    $_SESSION['success'] = "File uploaded successfully";
+    try{
+        $fp = fopen($file, "r");
+        if (!$fp) {
+            throw new Exception('File open failed.');
+        }
 
+        $publitio = new \Publitio\API('xxx','yyy');
+        $publitio->uploadFile($fp, 'file', array(
+            'public_id' => $title !== '' ? $title : '',
+            'title' => $title !== '' ? $title : '',
+            'folder' => 'zzz'
+        ));
+
+        $_SESSION['success'] = "File uploaded successfully";
+    } catch (Exception $e) {
+        $_SESSION['error'] = "Oops, something is not working...";
+    } 
 } else {
     header("Location: /");
 }
